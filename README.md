@@ -1,4 +1,4 @@
-# Special_Project
+# Special_Project - Optimiser
 
 This depository contains a Py code that aims to minimise the distance between two sets of 3D coordinates.
 In principle, the code should find the idealised adjustments for a given set of 3D coordinates with regards to an idealised envelope
@@ -8,7 +8,6 @@ Overal description of the files as follow, for moore details see comments along 
   A) main
   
   	Calls up the different modules
-   	A working example is included in the file
 
 B)Minimisation
 
@@ -36,8 +35,8 @@ D) Data comparison & manipulation
 	   points_stats
 
 
-Test_dummy files with data for working test samples are included in this depositoty
-
+Test_dummy files with data for working test samples are included in this depository
+Hope it helps
 
 GS
 
