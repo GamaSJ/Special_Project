@@ -3,10 +3,21 @@ import numpy as np
 
 #########################################
 class InitialCondition:
+    """
+    Evaluation of initial condition of arrays
+
+    Attributes:
+        array_A (np.array): reference array
+        array_B (np.array): array under study
+    """
     def __init__(self, array_A, array_B):
-        """Explores the initial condition as-is between two arrays
-        array_A -- considered as the reference
-        array_B -- to be adjusted
+        """
+        Initialises the evaluation of the initial condition as-is between two arrays
+
+        Args:
+            array_A (np.array): considered as the reference
+            array_B (np.array): array under stuay
+
         """
         self.array_A = np.array(array_A)
         self.array_B = np.array(array_B)
@@ -14,13 +25,25 @@ class InitialCondition:
 
 ############
     def compute_distances(self):
-        # Computes dist per point along two arrays
+        """
+        Computes distance between arrays
+
+        Return:
+             np.array: distances between points along array
+        """
+
         return np.linalg.norm(self.array_A - self.array_B, axis=1)
 
 
 
     def initial_distances(self):
-        #Computes initial condition between arrays: mean dist & tot dist
+        """
+        Computes initial condition between arrays: mean dist & tot dist
+
+        Return:
+             mean distance & total distances
+        """
+
         distances = self.compute_distances()
         print(f"The initial mean distance is {np.mean(distances):.3f} mm")
         print(f"The initial total distance is {distances.sum():.3f} mm")
@@ -29,7 +52,13 @@ class InitialCondition:
 
 
     def points_direction (self):
-        #identifies if a new optimised coords are closest or furthest than reference
+        """
+        Identifies if coords are closest or furthest than reference
+
+        Return:
+             np.array: offset per point
+        """
+
         distances = self.compute_distances()
         for i in range(len(distances)):
             # determines if shifted point is closess to origin

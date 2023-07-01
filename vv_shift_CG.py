@@ -6,19 +6,52 @@ import time
 #######################
 
 def distance(array_A, array_B):
-    # Mean distance along array of points
+    """
+    Computes distance between arrays for each point.
+
+    Args:
+        array_A (np.array): Reference Array
+        array_B (np.array): Array to modify
+
+    Returns:
+        np.array: distance norm
+    """
     return np.mean(np.linalg.norm(array_A - array_B, axis=1))#mean distance along array of points
 
 
 def objective(shift, array_A, array_B):
-    # Computes a shifted geometry, then calls the distance func
+    """
+    Defines objective function
+    Shift applied before computing distances
+
+    Args:
+        shift (np.array): shift to be applied
+        array_A (np.array): Reference Array
+        array_B (np.array): Array to modify
+
+    Returns:
+        np.array: computes distances
+    """
     shifted_B = array_B + shift
     return distance(array_A, shifted_B)
 
 
 def minimize_dist_CG(array_A, array_B, max_iterations, stop_criteria):
-    # Minimisation of distance between two array while considering shift
-    # Uses Scipy BFGS
+    """
+    Minize distances between two arrays while considering shift of the array
+    Uses Scipy - CG method
+
+    Args:
+        array_A (np.array): Reference Array
+        array_B (np.array): Array to modify
+        max_iterations (int): max number of iterations
+        stop_criteria (float): criteria for stop the algo
+
+    Returns:
+        optimised_shift (np.array): shift in x,y,z for array B
+
+    """
+
     start_time = time.perf_counter()  # for the time measurement
 
     initial_guess = np.zeros(3) # Initial guess for the shift

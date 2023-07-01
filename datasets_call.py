@@ -5,12 +5,15 @@ import numpy as np
 ################################
 
 def get_data (filename):
-    """ Gets the data from a given file.
+    """
+    Gets data from a given file.
+    User should know filename
 
-    Keword arguments:
-    filename -- given by user
+    Args:
+        filename (str) : given by user, include extension
 
-    Returns two np.array with sets of coordinates (reference & initial)
+    Returns:
+        np.arrays: two np.array with sets of coordinates (reference & initial)
     """
     df = pd.read_csv(filename, header=None)
     df.columns = ["Label", "Coord_X", "Coord_Y", "Coord_Z", "Measured_X", "Measured_Y", "Measured_Z"]

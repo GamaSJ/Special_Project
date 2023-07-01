@@ -4,7 +4,31 @@ import pandas as pd
 
 #######################
 class DataUpdate:
+    """
+    Database updates for init and opt
+
+    Attributes:
+        init_condition (np.array): results from starting condition
+        opt_condition (np.array): results from minimisation
+        case (str): case under study
+        material (str): material
+        side (str): characteristic
+    """
     def __init__(self, init_condition,opt_condition, case, material, side):
+        """
+        Initialise the update of databases based on results
+
+        Args:
+            init_condition (np.array): results from starting condition
+            opt_condition (np.array): results from minimisation
+            case (str): case under study
+            material (str): material
+            side (str): characteristic
+
+
+        """
+
+
         self.case = case
         self.material = material
         self.side = side
@@ -14,8 +38,14 @@ class DataUpdate:
 
 
     def initial_data (self):
-        #Updates the initial condition database
+        """
+        Updates database of initial condition
         #Assumes the existence of a "database" under the name "Bef_dummy.csv"
+
+        Return:
+             DataFrame: initial results
+        """
+
         file_name = "Bef_dummy.csv"
         df = pd.read_csv(file_name)
 
@@ -36,8 +66,13 @@ class DataUpdate:
 
 
     def optimised_data (self):
-        #Updates the optimised condition database
-        #Assumes the existence of a "database" under the name "Aft_dummy.csv"
+        """
+        Updates database of opt condition
+        Assumes the existence of a "database" under the name "Aft_dummy.csv"
+
+        Return:
+             DataFrame: opt results
+        """
         file_name = "Aft_dummy.csv"
         df = pd.read_csv(file_name)
 

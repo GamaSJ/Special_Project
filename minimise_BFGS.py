@@ -7,12 +7,32 @@ import time
 #########################
 
 def distance(array_A, array_B):
-    #Compute distances between two arrays
+    """
+    Computes distance between arrays for each point.
+
+    Args:
+        array_A (np.array): Reference Array
+        array_B (np.array): Array to modify
+
+    Returns:
+        np.array: distance norm
+    """
     return np.mean(np.linalg.norm(array_A - array_B, axis=1))
 
 
 def objective(shift, array_A, array_B):
-    #Both shift & rotation are applied before computing distances
+    """
+    Defines objective function
+    Both shift & rotation are applied before computing distances
+
+    Args:
+        shift (np.array): shift to be applied
+        array_A (np.array): Reference Array
+        array_B (np.array): Array to modify
+
+    Returns:
+        np.array: computes distances
+    """
     shifted_B = array_B + shift[:3]
     r = R.from_euler('xyz', shift[3:])
     transf_B = r.apply(shifted_B)
@@ -20,8 +40,26 @@ def objective(shift, array_A, array_B):
 
 
 def minimize_dist_rot_BFGS(array_A, array_B, max_iterations, stop_criteria, stop_tolerance):
-    #minize distances between two arrays while considering both shift and rot
-    #uses Scipy - BFGS method
+    """
+    Minize distances between two arrays while considering both shift and rotation
+    Uses Scipy - BFGS method
+
+    Args:
+        array_A (np.array): Reference Array
+        array_B (np.array): Array to modify
+        max_iterations (int): max number of iterations
+        stop_criteria (float): criteria for gradient norm
+        stop_tolerance (float):criteria for step size
+
+    Returns:
+        shigt (np.array): shift in x,y,z for array B
+        distances_mean (np.array): evolution of mean distances as per algo
+        distances_sum (np.array): evolution of total distances as per algo
+        iteration (int): number of iterations done by algo
+
+
+    """
+
     start_time = time.perf_counter()  # for the time measurement
     # Initial guess for the shift
     initial_guess = np.zeros(6)
