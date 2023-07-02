@@ -38,6 +38,8 @@ D) Data comparison & manipulation
 Test_dummy files with data for working test samples are included in this depository
 Hope it helps
 
+PS. ALl files are placed in folder "Optimiser_package" at once:)
+
 GS
 
 
